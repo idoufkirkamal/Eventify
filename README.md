@@ -1,22 +1,23 @@
-# EventTickets - Plateforme Microservices
+# EventTickets - Microservices Platform
 
-Plateforme de billetterie événementielle basée sur une architecture microservices.
+A modern event ticketing platform built with microservices architecture, featuring distributed services, asynchronous messaging, and comprehensive testing tools. Built with **Spring Boot**, **Laravel**, **Node.js**, **React**, **MySQL**, **RabbitMQ**, all containerized with **Docker**.
+
 
 ## 🏗️ Architecture
 
-| Service                         | Technologie          | Port | Description                  | Testing/Quality Tools                                          |
-| ------------------------------- | -------------------- | ---- | ---------------------------- | -------------------------------------------------------------- |
-| `api-gateway`                   | Node.js, Express     | 3000 | Point d'entrée, JWT, routage | Nodemon, Morgan                                                |
-| `EventCatalogService`           | Java 17, Spring Boot | 8080 | Catalogue d'événements       | JUnit, Mockito, JaCoCo, Checkstyle, Snyk, Swagger              |
-| `TicketInventoryService`        | Java 17, Spring Boot | 8082 | Stocks et réservations       | JUnit, Mockito, JaCoCo, Checkstyle, SonarQube, JMeter, Swagger |
-| `paymentAndNotificationService` | PHP 8.2, Laravel     | 8083 | Paiements et notifications   | PHPUnit, Mockery, PHPStan, Larastan, Laravel Pint              |
-| `user-service`                  | Node.js, Prisma      | 3001 | Authentification, profils    | Jest, ESLint, Snyk, SonarScanner, Swagger                      |
-| `web`                           | React.js, Vite       | 5173 | Frontend                     | ESLint, Vite                                                   |
+| Service                         | Technology           | Port | Description                   | Testing/Quality Tools                                          |
+| ------------------------------- | -------------------- | ---- | ----------------------------- | -------------------------------------------------------------- |
+| `api-gateway`                   | Node.js, Express     | 3000 | Entry point, JWT, routing     | Nodemon, Morgan                                                |
+| `EventCatalogService`           | Java 17, Spring Boot | 8080 | Event catalog                 | JUnit, Mockito, JaCoCo, Checkstyle, Snyk, Swagger              |
+| `TicketInventoryService`        | Java 17, Spring Boot | 8082 | Stock and reservations        | JUnit, Mockito, JaCoCo, Checkstyle, SonarQube, JMeter, Swagger |
+| `paymentAndNotificationService` | PHP 8.2, Laravel     | 8083 | Payments and notifications    | PHPUnit, Mockery, PHPStan, Larastan, Laravel Pint              |
+| `user-service`                  | Node.js, Prisma      | 3001 | Authentication, user profiles | Jest, ESLint, Snyk, SonarScanner, Swagger                      |
+| `web`                           | React.js, Vite       | 5173 | Frontend                      | ESLint, Vite                                                   |
 
-## 🚀 Démarrage rapide
+## 🚀 Quick Start
 
 ```bash
-# API Gateway (démarrer en premier)
+# API Gateway (start first)
 cd api-gateway && npm install && npm run dev
 
 # Event Catalog Service
@@ -37,28 +38,28 @@ cd web && npm install && npm run dev
 
 ## 🧪 Tests
 
-| Service                       | Commande           |
+| Service                       | Command            |
 | ----------------------------- | ------------------ |
 | EventCatalogService           | `mvnw.cmd test`    |
 | TicketInventoryService        | `mvnw.cmd test`    |
 | paymentAndNotificationService | `php artisan test` |
 
-### Couverture de code (JaCoCo)
+### Code Coverage (JaCoCo)
 
 ```bash
 cd TicketInventoryService
 mvn verify
-# Rapport: target/site/jacoco/index.html
+# Report: target/site/jacoco/index.html
 ```
 
-### Analyse SonarQube
+### SonarQube Analysis
 
 ```bash
 cd TicketInventoryService
 mvn verify sonar:sonar -Psonar -Dsonar.token=YOUR_TOKEN
 ```
 
-### Tests de charge (JMeter)
+### Load Testing (JMeter)
 
 ```bash
 cd TicketInventoryService/jmeter
@@ -71,32 +72,32 @@ jmeter -n -t TicketReservationLoadTest.jmx -l results.jtl
 docker-compose up -d
 ```
 
-## 📁 Structure
+## 📁 Project Structure
 
 ```
 EventTickets/
 ├── api-gateway/                 # API Gateway (Node.js)
-├── EventCatalogService/         # Catalogue (Spring Boot)
-├── TicketInventoryService/      # Inventaire (Spring Boot)
-├── paymentAndNotificationService/  # Paiement (Laravel)
-├── user-service/                # Utilisateurs (Node.js)
-├── web/                         # Frontend (Vue.js)
+├── EventCatalogService/         # Event Catalog (Spring Boot)
+├── TicketInventoryService/      # Inventory (Spring Boot)
+├── paymentAndNotificationService/  # Payment (Laravel)
+├── user-service/                # Users (Node.js)
+├── web/                         # Frontend (React.js)
 └── docker-compose.yml
 ```
 
 ## ⚙️ Configuration
 
-Chaque service nécessite un fichier `.env` (voir `.env.example` dans chaque dossier).
+Each service requires a `.env` file (see `.env.example` in each folder).
 
-| Service      | Variables clés                  |
-| ------------ | ------------------------------- |
-| api-gateway  | `JWT_SECRET`, URLs des services |
-| Spring Boot  | `spring.datasource.*`           |
-| Laravel      | `DB_*`, `MAIL_*`, clés paiement |
-| user-service | `DATABASE_URL`, `JWT_SECRET`    |
-| web          | `VITE_API_BASE_URL`             |
+| Service      | Key Variables                  |
+| ------------ | ------------------------------ |
+| api-gateway  | `JWT_SECRET`, service URLs     |
+| Spring Boot  | `spring.datasource.*`          |
+| Laravel      | `DB_*`, `MAIL_*`, payment keys |
+| user-service | `DATABASE_URL`, `JWT_SECRET`   |
+| web          | `VITE_API_BASE_URL`            |
 
-## 📚 Documentation API
+## 📚 API Documentation
 
 - **Swagger UI**: http://localhost:8080/swagger-ui.html (EventCatalog)
 - **Swagger UI**: http://localhost:8082/swagger-ui.html (TicketInventory)
@@ -116,13 +117,13 @@ Login Page
 Dashboard organizer
 
 ![Ticket Selection](web/public/screenshots/4.png)
-Add New Event Page 
+Add New Event Page
 
 ![Booking Process](web/public/screenshots/5.jpeg)
 My Events Page
 
 ![Cart](web/public/screenshots/6.jpeg)
-tickets Management
+Tickets Management
 
 ### Client Side
 
